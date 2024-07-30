@@ -14,7 +14,7 @@ function App() {
 
       {/* define routes */}
       <Routes>
-        <Route path='/' element = {<Home/>} />
+       
         <Route path='/movies' element = {<MovieList/>} />
         <Route path='/movie/:id' element = {<MovieDetails/>} />
       </Routes>

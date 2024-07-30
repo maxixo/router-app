@@ -5,18 +5,19 @@ import { useNavigate } from "react-router-dom";
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [newMovie, setNewMovie] = useState({ title: "", image: "", description: "", rating: "" });
+  const [newMovie, setNewMovie] = useState({ title: "", image: "", description: "", rating: ""});
   const [filter, setFilter] = useState({ title: "", rating: "" });
 
   // handle fetch data from API
   const fetchMovies = async () => {
     const url = "https://imdb-top-100-movies.p.rapidapi.com/";
     const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': 'a889d10d51msh774362e1b7d404ep1430e2jsnfb957852c6c2',
-            'x-rapidapi-host': 'imdb-top-100-movies.p.rapidapi.com'
-        }
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': '2c1748817cmshc2d4d4e34af7f55p1d15b2jsnfd06713e92e4',
+        'x-rapidapi-host': 'imdb-top-100-movies.p.rapidapi.com'
+      }
+    
     };
 
     try {
@@ -49,10 +50,14 @@ const MovieList = () => {
   }, [filter, movies]);
 
   const handleAddMovie = () => {
-    setMovies([...movies, newMovie]);
-    setFilteredMovies([...movies, newMovie]);
-
-    setNewMovie({ title: "", image: "", description: "", rating: "" });
+    if (Array.isArray(movies)) {
+      const updatedMovies = [...movies, newMovie];
+      setMovies(updatedMovies);
+      setFilteredMovies(updatedMovies);
+      setNewMovie({ title: "", image: "", description: "", rating: "" });
+    } else {
+      console.error("Movies state is not an array:", movies);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -152,6 +157,7 @@ const MovieList = () => {
           value={filter.rating}
           onChange={handleFilterChange}
         />
+       
       </div>
 
       <div style={styles.container} className="mobile">

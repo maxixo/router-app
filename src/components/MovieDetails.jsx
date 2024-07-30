@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 
@@ -23,12 +23,13 @@ const MovieDetails = () => {
  const getMovies = async () => {
         const url = `https://imdb-top-100-movies.p.rapidapi.com/${id}`;
         const options = {
-            method: 'GET',
-            headers: {
-                'x-rapidapi-key': 'a889d10d51msh774362e1b7d404ep1430e2jsnfb957852c6c2',
-                'x-rapidapi-host': 'imdb-top-100-movies.p.rapidapi.com'
-            }
-        };
+          method: 'GET',
+          headers: {
+            'x-rapidapi-key': '2c1748817cmshc2d4d4e34af7f55p1d15b2jsnfd06713e92e4',
+            'x-rapidapi-host': 'imdb-top-100-movies.p.rapidapi.com'
+          }
+        
+        }
 
         try {
             const response = await fetch(url, options);
@@ -56,8 +57,18 @@ console.log('getMovies', movies);
     <div >
          <h1>{movies.title}</h1>
          <img src={movies.image} alt="" />
-         <h1  style={{width:'280px'}}   >{movies.description}</h1>
-         <h2>{movies.rating}</h2>
+         <h1  style={{width:'280px'}}>{movies.description}</h1>
+         <Link to={movies.trailer} >Trailer</Link>
+         <>
+         &nbsp; 
+         </>
+         &nbsp; 
+         &nbsp; 
+         &nbsp; 
+          
+         <Link to='/movies'> Go back home</Link>
+         
+        
          </div>   
     </div>
   )

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 
 
-const MovieCard = ({ title, image, description, rating, func }) => {
+const MovieCard = ({ title, image, description, rating , func }) => {
   const styles = {
     image: {
       width: "100%",
@@ -13,6 +13,7 @@ const MovieCard = ({ title, image, description, rating, func }) => {
       borderRadius: "10px",
       margin: "10px",
       padding: "10px",
+      
     },
   };
 
@@ -28,6 +29,7 @@ const MovieCard = ({ title, image, description, rating, func }) => {
       <h3>{title || "Movie Title"}</h3>
       <p>{description}</p>
       <h3>Rating: {rating}</h3>
+
     </div>
   );
 };
